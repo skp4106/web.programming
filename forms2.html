@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summer Camp Registration</title>
+    <style>
+        /* General body styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e8f5e9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container to center and style the form */
+        .form-container {
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #4CAF50;
+        }
+
+        /* Header styling */
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        /* Fieldset styles */
+        fieldset {
+            border: 2px solid #ddd;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        legend {
+            font-size: 1.4rem;
+            color: #4CAF50;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Label styling */
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        /* Input and select box styling */
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        /* Placeholder text styling */
+        input::placeholder, textarea::placeholder {
+            color: #bbb;
+        }
+
+        /* Input focus styling */
+        input:focus, select:focus, textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        /* Submit button styling */
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1.2rem;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Required fields styling */
+        .required {
+            color: red;
+        }
+
+        /* Two column layout for input fields */
+        .two-columns {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .two-columns input, .two-columns select {
+            width: calc(50% - 10px);
+        }
+
+        /* Styling for labels below inputs (for first name, last name) */
+        .field-group label {
+            color: grey;
+            font-weight: normal;
+            margin-top: 5px;
+            display: block;
+        }
+
+        /* Responsive layout for small screens */
+        @media (max-width: 768px) {
+            .two-columns {
+                flex-direction: column;
+            }
+
+            .two-columns input, .two-columns select {
+                width: 100%;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Summer Camp Registration</h1>
+        <form action="#" method="POST">
+            <!-- Child Information -->
+            <fieldset>
+                <legend>Child Information</legend>
+                <label for="child-first-name">Child Name <span class="required">*</span></label>
+                <div class="two-columns">
+                    <div class="field-group">
+                        <input type="text" id="child-first-name" name="child_first_name" placeholder="First Name" required>
+                        <label for="child-first-name">First Name</label>
+                    </div>
+                    <div class="field-group">
+                        <input type="text" id="child-last-name" name="child_last_name" placeholder="Last Name" required>
+                        <label for="child-last-name">Last Name</label>
+                    </div>
+                </div>
+                <label for="dob">Birth Date <span class="required">*</span></label>
+                <div class="two-columns">
+                    <select id="dob-day" name="dob_day" required>
+                        <option value="" disabled selected>Day</option>
+                        <script>
+                            for (let i = 1; i <= 31; i++) {
+                                document.write(`<option value="${i}">${i}</option>`);
+                            }
+                        </script>
+                    </select>
+
+                    <select id="dob-month" name="dob_month" required>
+                        <option value="" disabled selected>Month</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+
+                    <select id="dob-year" name="dob_year" required>
+                        <option value="" disabled selected>Year</option>
+                        <script>
+                            const currentYear = new Date().getFullYear();
+                            for (let i = currentYear; i >= 1900; i--) {
+                                document.write(`<option value="${i}">${i}</option>`);
+                            }
+                        </script>
+                    </select>
+                </div>
+                <label for="grade">Grade <span class="required">*</span></label>
+                <input type="text" id="grade" name="grade" placeholder="EX: 4" required>
+
+                <label for="school">Name of School <span class="required">*</span></label>
+                <input type="text" id="school" name="school" placeholder="Enter school name" required>
+            </fieldset>
+
+            <!-- Parent/Guardian Information -->
+            <fieldset>
+                <legend>Parent/Guardian Information</legend>
+                <label for="parent-first-name">Parent/Guardian Name <span class="required">*</span></label>
+                <div class="two-columns">
+                    <div class="field-group">
+                        <input type="text" id="parent-first-name" name="parent_first_name" placeholder="First Name" required>
+                        <label for="parent-first-name">First Name</label>
+                    </div>
+                    <div class="field-group">
+                        <input type="text" id="parent-last-name" name="parent_last_name" placeholder="Last Name" required>
+                        <label for="parent-last-name">Last Name</label>
+                    </div>
+                </div>
+
+                <label for="address">Address <span class="required">*</span></label>
+                <input type="text" id="street-address" name="street_address" placeholder="Street Address" required>
+                <input type="text" id="address-line-2" name="address_line_2" placeholder="Street Address Line 2">
+                <div class="two-columns">
+                    <input type="text" id="city" name="city" placeholder="City" required>
+                    <input type="text" id="state" name="state" placeholder="State/Province" required>
+                </div>
+                <div class="two-columns">
+                    <input type="text" id="postal-code" name="postal_code" placeholder="Postal/Zip Code" required>
+                    <select id="country" name="country" required>
+                        <option value="">Select Country</option>
+                        <option value="usa">United States</option>
+                        <option value="canada">Canada</option>
+                        <option value="india">India</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <label for="phone-number">Phone Number <span class="required">*</span></label>
+                <div class="two-columns">
+                    <input type="text" id="area-code" name="area_code" placeholder="Area Code" required>
+                    <input type="tel" id="phone-number" name="phone_number" placeholder="Phone Number" required>
+                </div>
+
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" placeholder="example@example.com" required>
+            </fieldset>
+
+            <!-- Medical Information -->
+            <fieldset>
+                <legend>Medical Information</legend>
+                <label for="physician-name">Physician Name</label>
+                <div class="two-columns">
+                    <input type="text" id="physician-first-name" name="physician_first_name" placeholder="First Name">
+                    <input type="text" id="physician-last-name" name="physician_last_name" placeholder="Last Name">
+                </div>
+
+                <label for="physician-phone">Phone Number</label>
+                <input type="tel" id="physician-phone" name="physician_phone" placeholder="Enter phone number">
+
+                <label for="medical-concerns">Medical Concerns</label>
+                <textarea id="medical-concerns" name="medical_concerns" placeholder="Enter any medical concerns here" rows="4"></textarea>
+            </fieldset>
+
+            <input type="submit" value="Submit Form">
+        </form>
+    </div>
+</body>
+</html>
